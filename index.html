@@ -37,8 +37,8 @@ Correo electrónico<br>
 </label><br><br>
 
 <label>
-Año natural evaluado (hasta 2025 inclusive)<br>
-<input type="number" name="year" max="2025" required>
+Año natural evaluado<br>
+<input type="text" name="year" placeholder="Ej. 2025" required>
 </label><br><br>
 
 <h3>Operaciones realizadas</h3>
@@ -52,24 +52,29 @@ Año natural evaluado (hasta 2025 inclusive)<br>
 
 <label>
 Número ONU<br>
-<input type="text" name="onu">
+<input type="text" name="onu" placeholder="Ej. 1263" required>
+</label><br><br>
+
+<label>
+Grupo de embalaje (GE)<br>
+<input type="text" name="grupo_embalaje" placeholder="I, II o III" required>
 </label><br><br>
 
 <label>
 Cantidad anual (kg o litros)<br>
-<input type="number" step="any" name="cantidad">
+<input type="text" name="cantidad" placeholder="Ej. 1500" required>
 </label><br><br>
 
 <h3>Tipo de informe</h3>
 
 <label>
 <input type="radio" name="tipo_informe" value="estandar" checked>
-Informe estándar
+Informe justificativo estándar
 </label><br>
 
 <label>
 <input type="radio" name="tipo_informe" value="plus">
-Informe PLUS
+Informe justificativo PLUS
 </label><br><br>
 
 <button type="submit">Enviar evaluación</button>
