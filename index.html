@@ -91,18 +91,22 @@ La información se facilita mediante declaración responsable y debe provenir de
 document.getElementById("adrForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  alert("Botón pulsado");  // ← esto tiene que salir SIEMPRE
+
   const data = Object.fromEntries(new FormData(e.target));
 
-  await fetch("https://adr-exencion-email.danielliceras.workers.dev/", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
+  try {
+    const res = await fetch("https://adr-exencion-email.danielliceras.workers.dev/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
 
-  alert("Evaluación enviada");
+    alert("Fetch ejecutado");
+  } catch (err) {
+    alert("ERROR en fetch");
+    console.error(err);
+  }
 });
 </script>
-
-</body>
-</html>
 ``
