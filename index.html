@@ -17,10 +17,8 @@ Herramienta para evaluar y justificar documentalmente la exención conforme al a
 
 <h2>Evaluación de la actividad</h2>
 
-<form action="https://formspree.io/f/mgopbpbl" method="POST">
-
-<input type="hidden" name="_subject" value="Nueva evaluación ADR">
-<input type="hidden" name="_template" value="table">
+<!-- FORMULARIO: ya NO envía a ningún servicio externo -->
+<form id="formADR">
 
 <h3>Datos del titular</h3>
 
@@ -65,7 +63,7 @@ Grupo de embalaje<br>
 
 <label>
 Cantidad anual<br>
-<input type="text" name="cantidad" required>
+<input type="number" name="cantidad" required>
 </label><br><br>
 
 <h3>Tipo de informe</h3>
@@ -80,15 +78,40 @@ Estándar
 PLUS
 </label><br><br>
 
-<button type="submit">Enviar evaluación</button>
+<button type="submit">Evaluar</button>
 
 </form>
 
 <hr>
 
+<!-- ZONA DE RESULTADO -->
+<div id="resultado"></div>
+
 <p style="font-size: 0.9em;">
 La información se facilita mediante declaración responsable y debe provenir de cartas de porte.
 </p>
+
+<script>
+document.getElementById("formADR").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const datos = Object.fromEntries(new FormData(e.target));
+
+  const respuesta = await fetch("URL_DEL_MOTOR", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(datos)
+  });
+
+  const resultado = await respuesta.json();
+
+  document.getElementById("resultado").innerHTML = `
+    <h2>Resultado de la evaluación</h2>
+    <strong>${resultado.estado}</strong><br>
+    <em>${resultado.base}</em>
+  `;
+});
+</script>
 
 </body>
 </html>
