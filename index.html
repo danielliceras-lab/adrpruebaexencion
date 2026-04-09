@@ -17,7 +17,10 @@ Herramienta para evaluar y justificar documentalmente la exención conforme al a
 
 <h2>Evaluación de la actividad</h2>
 
-<form id="adrForm">
+<form action="https://formspree.io/f/mgopbpbl" method="POST">
+
+<input type="hidden" name="_subject" value="Nueva evaluación ADR">
+<input type="hidden" name="_template" value="table">
 
 <h3>Datos del titular</h3>
 
@@ -43,10 +46,10 @@ Año evaluado<br>
 
 <h3>Operaciones</h3>
 
-<label><input type="checkbox" name="operaciones[]" value="carga"> Carga</label><br>
-<label><input type="checkbox" name="operaciones[]" value="descarga"> Descarga</label><br>
-<label><input type="checkbox" name="operaciones[]" value="expedicion"> Expedición</label><br>
-<label><input type="checkbox" name="operaciones[]" value="transporte"> Transporte</label><br><br>
+<label><input type="checkbox" name="operaciones" value="carga"> Carga</label><br>
+<label><input type="checkbox" name="operaciones" value="descarga"> Descarga</label><br>
+<label><input type="checkbox" name="operaciones" value="expedicion"> Expedición</label><br>
+<label><input type="checkbox" name="operaciones" value="transporte"> Transporte</label><br><br>
 
 <h3>Mercancía</h3>
 
@@ -87,21 +90,5 @@ PLUS
 La información se facilita mediante declaración responsable y debe provenir de cartas de porte.
 </p>
 
-<script>
-document.getElementById("adrForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  alert("Botón pulsado");
-
-  const data = Object.fromEntries(new FormData(e.target));
-
-  fetch("https://adr-exencion-email.danielliceras.workers.dev/", {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(data)
-  });
-
-  alert("Evaluación enviada");
-});
-</script>
-
+</body>
+</html>
