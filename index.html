@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Informe justificativo de exención ADR</title>
 </head>
+
 <body>
 
 <h1>Informe justificativo de exención ADR</h1>
@@ -16,7 +17,7 @@ Herramienta para evaluar y justificar documentalmente la exención conforme al a
 
 <h2>Evaluación de la actividad</h2>
 
-<form method="POST" action="https://adr-exencion-email.danielliceras.workers.dev">
+<form id="adrForm">
 
 <h3>Datos del titular</h3>
 
@@ -80,12 +81,28 @@ PLUS
 
 </form>
 
-
 <hr>
 
 <p style="font-size: 0.9em;">
 La información se facilita mediante declaración responsable y debe provenir de cartas de porte.
 </p>
 
+<script>
+document.getElementById("adrForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const data = Object.fromEntries(new FormData(e.target));
+
+  await fetch("https://adr-exencion-email.danielliceras.workers.dev/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  alert("Evaluación enviada");
+});
+</script>
+
 </body>
 </html>
+``
